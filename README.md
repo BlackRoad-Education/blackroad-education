@@ -1,202 +1,74 @@
 # BlackRoad Cloud
 
-The unified web platform for BlackRoad OS — 21 page templates deployed across 99 Cloudflare Pages projects, Railway, 3 Raspberry Pis, and GitHub.
-
-## Live Status (2026-03-09)
-
-**99/99 Pages projects deployed** | **74/74 pages.dev URLs returning 200** | **18/41 custom domains healthy**
-
-### Custom Domains — Working (200)
-
-| Domain | Type |
-|--------|------|
-| blackroad.io | Primary |
-| blackroadai.com | Brand |
-| blackroadqi.com | Brand |
-| blackroadquantum.info | Brand |
-| blackroadquantum.net | Brand |
-| blackroadquantum.shop | Brand |
-| blackroadquantum.store | Brand |
-| lucidia.earth | Lucidia |
-| lucidiaqi.com | Lucidia |
-| dashboard.blackroad.io | Subdomain |
-| status.blackroad.io | Subdomain |
-| console.blackroad.io | Subdomain |
-| analytics.blackroad.io | Subdomain |
-| api.blackroad.io | Worker |
-| earth.blackroad.io | Subdomain |
-| education.blackroad.io | Subdomain |
-| finance.blackroad.io | Subdomain |
-| legal.blackroad.io | Subdomain |
-
-### Custom Domains — Issues
-
-| Domain | Status | Issue |
-|--------|--------|-------|
-| blackroadinc.us | 521 | Origin down |
-| blackroadquantum.com | 521 | Origin down |
-| app.blackroad.io | 522 | Connection timeout |
-| demo.blackroad.io | 522 | Connection timeout |
-| roadcoin.io | 525 | SSL handshake failed |
-| roadchain.io | 403 | Forbidden |
-| stripe.blackroad.io | 404 | Worker route |
-| creator-studio.blackroad.io | 530 | Origin DNS error |
-| research-lab.blackroad.io | 530 | Origin DNS error |
-| admin.blackroad.io | 000 | DNS/tunnel misconfigured |
-| content.blackroad.io | 000 | DNS/tunnel misconfigured |
-| customer-success.blackroad.io | 000 | DNS/tunnel misconfigured |
-| design.blackroad.io | 000 | DNS/tunnel misconfigured |
-| engineering.blackroad.io | 000 | DNS/tunnel misconfigured |
-| healthcare.blackroad.io | 000 | DNS/tunnel misconfigured |
-| hr.blackroad.io | 000 | DNS/tunnel misconfigured |
-| marketing.blackroad.io | 000 | DNS/tunnel misconfigured |
-| operations.blackroad.io | 000 | DNS/tunnel misconfigured |
-| product.blackroad.io | 000 | DNS/tunnel misconfigured |
-| resume.blackroad.io | 000 | DNS/tunnel misconfigured |
-| sales.blackroad.io | 000 | DNS/tunnel misconfigured |
-| signup.blackroad.io | 000 | DNS/tunnel misconfigured |
-| support.blackroad.io | 000 | DNS/tunnel misconfigured |
+Unified SPA for the BlackRoad OS web presence — 22 routes covering landing pages, dashboards, chat, terminal, and brand system. React 19 + Vite, deployed to Cloudflare Pages.
 
 ## Stack
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | React 19.2 + Vite 7.3 |
-| Routing | react-router-dom 7.13 |
-| Charts | Recharts 3.8 |
-| Payments | Stripe (via `stripe.blackroad.io` Worker) |
-| Auth | Clerk (planned) |
-| Hosting | Cloudflare Pages (99) + Railway + 3 Pis + GitHub |
-| Build | 1.0 MB total (`dist/`) |
-| Source | 12,506 lines across 21 pages + 4 libraries |
+| Framework | React 19 + Vite 7 |
+| Routing | react-router-dom |
+| Charts | Recharts |
+| Payments | Stripe (via Cloudflare Worker) |
+| Hosting | Cloudflare Pages |
+| Build | ~1 MB (`dist/`) |
 
-## Routes (22)
+## Routes
 
-| Path | Component | Description |
-|------|-----------|-------------|
-| `/` | BlackRoadLanding | Landing page with pricing tiers |
-| `/dashboard` | BlackRoadDashboard | Internal metrics and charts |
-| `/os` | BlackRoadOS | Desktop OS with 9 apps |
-| `/status` | BlackRoadStatus | System status monitor |
-| `/chat` | BlackRoadChat | Chat interface |
-| `/chat2` | BlackRoadChat2 | Chat v2 |
-| `/terminal` | LucidiaTerminal | Lucidia terminal emulator |
-| `/explorer` | BlackRoadExplorer | File/data explorer |
-| `/chain` | RoadChainExplorer | RoadChain blockchain explorer |
-| `/docs` | BlackRoadDocs | Documentation |
-| `/about` | AboutPage | Company info |
-| `/leadership` | LeadershipPage | Leadership team |
-| `/auth` | BlackRoadAuth | Authentication |
-| `/settings` | BlackRoadSettings | Settings panel |
-| `/onboarding` | BlackRoadOnboarding | User onboarding flow |
-| `/roadmap` | BlackRoadRoadmapPage | Product roadmap |
-| `/brand` | BlackRoadBrandSystem | Brand system reference |
-| `/brand-kit` | BrandTemplate | Brand template kit |
-| `/animations` | BlackRoadAnimations | Animation showcase |
-| `/command` | BlackRoadCommand | Command palette |
-| `/pricing` | BlackRoadPricing | Stripe pricing + checkout |
-| `/billing` | BlackRoadPricing | Billing management |
+| Path | Description |
+|------|-------------|
+| `/` | Landing page with pricing |
+| `/dashboard` | Internal metrics and charts |
+| `/os` | Desktop OS with 9 apps |
+| `/status` | System status monitor |
+| `/chat` | Chat interface |
+| `/terminal` | Lucidia terminal emulator |
+| `/explorer` | File/data explorer |
+| `/chain` | RoadChain blockchain explorer |
+| `/docs` | Documentation |
+| `/about` | Company info |
+| `/auth` | Authentication |
+| `/settings` | Settings panel |
+| `/onboarding` | User onboarding flow |
+| `/roadmap` | Product roadmap |
+| `/brand` | Brand system reference |
+| `/pricing` | Stripe pricing + checkout |
 
-## Brand System
+## Development
 
-- **Background**: `#000000` (pure black)
-- **Gradient stops**: `#FF6B2B` → `#FF2255` → `#CC00AA` → `#8844FF` → `#4488FF` → `#00D4FF`
-- **Fonts**: Space Grotesk (headings), Inter (body), JetBrains Mono (code)
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # Build to dist/
+```
 
-## Libraries
+## Deploy
 
-| File | Purpose | Lines |
-|------|---------|-------|
-| `src/lib/config.js` | Central config (Stripe keys, endpoints, price IDs) | — |
-| `src/lib/hybrid-memory.js` | 12-layer hybrid memory engine (x2.18B multiplier) | 501 |
-| `src/lib/pixel-memory.js` | Binary pixel memory (x4,096 multiplier) | — |
-| `src/lib/trinary-memory.js` | Base-3 trinary memory (x531,441 multiplier) | — |
+```bash
+npx wrangler pages deploy dist --project-name blackroad-cloud --commit-dirty=true
+```
+
+Auto-deploys on push to `main` via GitHub Actions.
 
 ## Stripe Integration
 
-- **Worker**: `stripe.blackroad.io` (Cloudflare Worker)
-- **Endpoints**: `/checkout`, `/portal`, `/webhook`, `/prices`
-- **Plans**: Operator ($0), Pro ($49/mo), Sovereign ($299/mo), Enterprise (custom)
-- **Add-ons**: Lucidia Enhanced ($29), RoadAuth ($99), Context Bridge ($10), Knowledge Hub ($15)
-- **Mode**: Live (not test)
+Worker at `stripe.blackroad.io` handles checkout, portal, webhooks, and price queries.
 
-## Deployment
+| Plan | Price |
+|------|-------|
+| Operator | Free |
+| Pro | $49/mo |
+| Sovereign | $299/mo |
+| Enterprise | Custom |
 
-All platforms deploy the same SPA build from `dist/`. SPA routing handled by `public/_redirects`.
+## Libraries
 
-### Platforms (all live, tested 2026-03-09)
+| File | Purpose |
+|------|---------|
+| `src/lib/config.js` | Central config (endpoints, Stripe keys) |
+| `src/lib/hybrid-memory.js` | Hybrid memory engine |
+| `src/lib/trinary-memory.js` | Base-3 trinary memory |
 
-| Platform | URL | Status |
-|----------|-----|--------|
-| **Cloudflare Pages** | 99 projects (74 pages.dev + 18 custom domains) | 200 |
-| **Railway** | 22 services, all returning 200 (see below) | 200 |
-| **GitHub** | 21 repos under blackboxprogramming (see below) | Public |
-| **Gitea** | 22 repos under platform/ on Octavia | Internal |
-| **Alice (Pi 400)** | http://192.168.4.49:8080 | 200 |
-| **Cecilia (Pi 5)** | http://192.168.4.96:8080 | 200 |
-| **Lucidia (Pi 5)** | http://192.168.4.38:8081 | 200 |
+## License
 
-### CI/CD
-
-GitHub Actions workflow (`.github/workflows/deploy.yml`) auto-deploys on push to `main`:
-- Builds with Node 20
-- Deploys to Cloudflare Pages
-- Deploys to Railway
-- Deploys to Pis via rsync (self-hosted runner)
-
-```bash
-npm run build                    # Build to dist/
-npx wrangler pages deploy dist --project-name <name> --commit-dirty=true
-railway up --detach              # Deploy to Railway
-```
-
-### Railway Services (22/22 live)
-
-| Service | URL |
-|---------|-----|
-| blackroad-cloud | https://blackroad-cloud-production.up.railway.app |
-| blackroad-web | https://blackroad-web-production.up.railway.app |
-| blackroad-os | https://blackroad-os-production.up.railway.app |
-| blackroad-ai | https://blackroad-ai-production.up.railway.app |
-| blackroad-core | https://blackroad-core-production.up.railway.app |
-| blackroad-agents | https://blackroad-agents-production.up.railway.app |
-| blackroad-api-production | https://blackroad-api-production-production.up.railway.app |
-| blackroad-os-orchestrator | https://blackroad-os-orchestrator-production.up.railway.app |
-| blackroad-os-inc | https://blackroad-os-inc-production.up.railway.app |
-| blackroad-education | https://blackroad-education-production.up.railway.app |
-| blackroad-interactive | https://blackroad-interactive-production.up.railway.app |
-| blackroad-media | https://blackroad-media-production.up.railway.app |
-| blackroad-foundation | https://blackroad-foundation-production.up.railway.app |
-| blackroad-ventures | https://blackroad-ventures-production.up.railway.app |
-| blackroad-studio | https://blackroad-studio-production.up.railway.app |
-| blackroad-labs | https://blackroad-labs-production.up.railway.app |
-| blackroad-archive | https://blackroad-archive-production.up.railway.app |
-| blackroad-gov | https://blackroad-gov-production.up.railway.app |
-| blackroad-hardware | https://blackroad-hardware-production.up.railway.app |
-| blackroad-security | https://blackroad-security-production.up.railway.app |
-| blackbox-enterprises | https://blackbox-enterprises-production.up.railway.app |
-| blackboxprogramming | https://blackboxprogramming-production.up.railway.app |
-
-### GitHub Repos (21 new + 107 existing)
-
-All Railway projects mirrored to `github.com/blackboxprogramming/<name>` and `git.blackroad.io/platform/<name>`.
-
-## Infrastructure
-
-- **99 Cloudflare Pages projects** — all deployed
-- **10 Cloudflare Workers** — api, stripe, verify, fleet, operator, core, dashboard-api, auth, quantum, road
-- **22 Railway services** — all returning 200
-- **128 GitHub repos** — blackboxprogramming org
-- **22 Gitea repos** — platform/ on Octavia
-- **3 Pi web servers** — Alice (:8080), Cecilia (:8080), Lucidia (:8081)
-- **2 DigitalOcean droplets** — gematria, anastasia
-- **WireGuard mesh** — 10.8.0.x overlay network
-- **2x Hailo-8 AI accelerators** — 52 TOPS total (Cecilia + Octavia)
-
-### GitHub Actions Secrets
-
-| Secret | Purpose |
-|--------|---------|
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Pages deployment |
-| `CLOUDFLARE_API_TOKEN` | Cloudflare Pages deployment |
-| `RAILWAY_TOKEN` | Railway deployment |
+Copyright 2026 BlackRoad OS, Inc. All rights reserved.
